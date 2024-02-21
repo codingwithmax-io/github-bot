@@ -12,13 +12,12 @@ const octokit = new Octokit({
     auth: process.env.TOKEN
 });
 async function getRepoEvents() {
-    octokit.rest.activity.listRepoEvents({
-        owner: 'codingwithmax-io',
-        repo: 'github-bot'
+    octokit.rest.activity.listPublicOrgEvents({
+        org: 'codingwithmax-io',
     })
 
         .then((data) => {
-            console.log(data.data);
+            console.log('SUCCESS THE DATA IS: ', data.data[0]);
         })
         .catch((error) => {
             console.log(error);
