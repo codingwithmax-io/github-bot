@@ -6,6 +6,7 @@ const path = require('path');
 const { Octokit } = require('@octokit/rest');
 let events = undefined; // these are the latest events from the GitHub API & Org.
 const { sameDay, format } = require('@formkit/tempo');
+const { compileFunction } = require('vm');
 const intervalTime = 5000; // 5 seconds
 dotenv.config();
 app.use(express.json());
@@ -37,7 +38,7 @@ async function getRepoEvents() {
       console.log('Event Actor: ', events.actor.login);
       const sameTime = sameDay(events.created_at, new Date());
       console.log('the same time is: ', sameTime);
-      // TODO: events.created_at can be used to check if the event is new by comparing it to the last event created at
+      //*** Note: events.created_at can be used to check if the event is new by comparing it to the last event created at
             if (sameTime) {
                 console.log('Something happened on the same day in the organisation');
             }
