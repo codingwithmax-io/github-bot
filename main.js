@@ -77,8 +77,8 @@ async function getRepoEvents() {
 setInterval(getRepoEvents, intervalTime);
 const wait = ms => new Promise(res => setTimeout(res, ms));
 async function init() {
-    console.log('Starting');
-    await wait(3000);
+    console.log('Starting to fetch every 5 minutes...');
+    await wait(300000); // Wait for 5 minutes (300000 milliseconds)
     getRepoEvents();
     console.log('Done');
 }
