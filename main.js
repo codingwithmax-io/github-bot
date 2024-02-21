@@ -4,7 +4,8 @@ const port = process.env.PORT || 3000;
 const dotenv = require('dotenv');
 const path = require('path');
 const { Octokit } = require('@octokit/rest');
-let events = undefined;
+let events = undefined; // these are the latest events from the GitHub API & Org.
+const { sameDay, format } = require('@formkit/tempo');
 const intervalTime = 5000; // 5 seconds
 dotenv.config();
 app.use(express.json());
@@ -34,7 +35,14 @@ async function getRepoEvents() {
     if ((await response).status === 200) {
       console.log('Event Type: ', events.type);
       console.log('Event Actor: ', events.actor.login);
-      console.log('Created At: ', events.created_at);
+      const sameTime = sameDay(events.created_at, new Date());
+      console.log('the same time is: ', sameTime);
+      // TODO: events.created_at can be used to check if the event is new by comparing it to the last event created at
+            if (sameTime) {
+                console.log('Something happened on the same day in the organisation');
+            }
+
+      console.log('Created At: ', format(events.created_at));
       console.log('Repo: ', events.repo.name);
       console.log('Payload: ', events.payload);
     }
@@ -66,8 +74,16 @@ async function getRepoEvents() {
   }
 }
 
-// setInterval(getRepoEvents, intervalTime);
-getRepoEvents();
+setInterval(getRepoEvents, intervalTime);
+const wait = ms => new Promise(res => setTimeout(res, ms));
+async function init() {
+    console.log('Starting');
+    await wait(3000);
+    getRepoEvents();
+    console.log('Done');
+}
+
+init();
 
 
 
