@@ -1,0 +1,24 @@
+{
+  "name": "github-bot",
+  "version": "1.0.0",
+  "description": "A Github Bot for my students",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/codingwithmax-io/github-bot.git"
+  },
+  "keywords": [
+    "github",
+    "bot",
+    "discord"
+  ],
+  "author": "Max Carlquist",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/codingwithmax-io/github-bot/issues"
+  },
+  "homepage": "https://github.com/codingwithmax-io/github-bot#readme"
+}
