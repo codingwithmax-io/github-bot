@@ -4,6 +4,7 @@ const port = process.env.PORT || 3000;
 const dotenv = require('dotenv');
 const path = require('path');
 const { Octokit } = require('@octokit/rest');
+const timeout = 10000;
 
 dotenv.config();
 app.use(express.json());
@@ -17,19 +18,18 @@ async function getRepoEvents() {
     })
 
         .then((data) => {
-            console.log('SUCCESS THE DATA IS: ', data.data[0]);
+            return data.data;
         })
         .catch((error) => {
             console.log(error);
         });
 }
 
-getRepoEvents();
+setTimeout(async () => {
+    const events = await getRepoEvents();
+    console.log('THE EVENTS of the org is: ', events);
+}, timeout);
 
-
-app.post('/webhook', (req, res) => {
-
-});
 
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
