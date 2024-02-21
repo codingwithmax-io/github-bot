@@ -4,7 +4,8 @@
   "description": "A Github Bot for my students",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node main.js"
   },
   "repository": {
     "type": "git",
@@ -20,5 +21,10 @@
   "bugs": {
     "url": "https://github.com/codingwithmax-io/github-bot/issues"
   },
-  "homepage": "https://github.com/codingwithmax-io/github-bot#readme"
+  "homepage": "https://github.com/codingwithmax-io/github-bot#readme",
+  "dependencies": {
+    "@octokit/rest": "^20.0.2",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.2"
+  }
 }
