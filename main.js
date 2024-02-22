@@ -38,7 +38,7 @@ async function getRepoEvents() {
       console.log('Event Actor: ', events.actor.login);
       const sameTime = sameDay(events.created_at, new Date());
       console.log('the same time is: ', sameTime);
-      //*** Note: events.created_at can be used to check if the event is new by comparing it to the last event created at
+      //*** Note: events.created_at can be used to check if the event is new by comparing it to the last event created at?
             if (sameTime) {
                 console.log('Something happened on the same day in the organisation');
             }
